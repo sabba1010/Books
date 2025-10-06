@@ -23,6 +23,7 @@ const Banner = () => {
           alt="Book cover"
         />
       </div>
+      
     </div>
   );
 };
