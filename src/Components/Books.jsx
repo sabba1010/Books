@@ -1,33 +1,27 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { data } from 'react-router';
-import Book from './Pages/Book';
 
 
-const Books = ({data}) => {
-    const [allbooks, setAllBooks]= useState([]);
+import React, { useEffect, useState } from "react";
+import Book from "./Pages/Book";
 
-    // useEffect(()=>{
-    //     fetch("booksData.json")
-    //     .then(res=>res.json())
-    //     .then(data => {
-    //        setAllBooks(data)
-            
-    //     })
-    // },[])
+const Books = () => {
+  const [allBooks, setAllBooks] = useState([]);
 
-    // const bookPromise=fetch('./booksData.json').then(res=>res.json())
+  useEffect(() => {
+    fetch("/booksData.json") // public folder theke fetch
+      .then((res) => res.json())
+      .then((data) => setAllBooks(data));
+  }, []);
 
-    return (
-        <div>
-            <h1 className='text-3xl text-center'>Books</h1>
-            <Suspense fallback={<span>Loading...</span>} >
-           
-                <Book data={data}></Book>
-            
-            </Suspense>
-            
-        </div>
-    );
+  return (
+    <div>
+      <h1 className="text-3xl text-center mb-6">Books</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        {allBooks.map((book) => (
+          <Book key={book.bookId} book={book} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Books;
