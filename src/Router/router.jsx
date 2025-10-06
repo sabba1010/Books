@@ -5,6 +5,7 @@ import { createBrowserRouter,
 import Root from '../Components/Root';
 import Error from '../../Error';
 import Home from '../Components/Home';
+import BookDetails from '../Components/Pages/BookDetails';
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,8 @@ export const router = createBrowserRouter([
         Component: Home,
     },
     {
-
+      path:"/book/:id",
+      Component:BookDetails,
     }
    ]
   },
